@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-lab-final-mini-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ai-lab-final-mini-app
+  template:
+    metadata:
+      labels:
+        app: ai-lab-final-mini-app
+    spec:
+      containers:
+      - name: ai-lab-mini-app
+        image: ksreey/ai-lab-final-mini-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8501
+        resources:
+          limits:
+            cpu: 500m    # Limit the CPU usage to 500 milliCPU units
+            memory: 512Mi    # Limit the memory usage to 512 megabytes
+          requests:
+            cpu: 100m    # Specify the CPU request as 100 milliCPU units
+            memory: 256Mi    # Specify the memory request as 256 megabytes
